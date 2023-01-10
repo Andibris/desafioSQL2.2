@@ -40,7 +40,7 @@ FOREIGN KEY (cd_produto)   REFERENCES qualidade.produto(cd_produto));
 
 INSERT INTO qualidade.dados_avaliacao(cd_avaliacao, nm_avaliacao) VALUES 
 ('OK', 'LIBERADO'),
-('EL', 'PROBLEMA ELÉTRICO'),
+('EL', 'PROBLEMA ELÃ‰TRICO'),
 ('PT', 'PROBLEMA DE PINTURA'), 
 ('PE', 'PROBLEMA NA ESTRUTURA'),
 ('TR', 'TODO REJEITADO')
@@ -85,23 +85,23 @@ FROM qualidade.avaliacao
 WHERE dt_avaliacao = '2022-12-16' AND cd_matricula = 1 
 --Foram 103 minutos.
 
---Quantas horas o inspetor Trancoso da Silvatrabalhou no período de 01/12/2022 à 22/12/2022?
+--Quantas horas o inspetor Trancoso da Silvatrabalhou no perÃ­odo de 01/12/2022 Ã  22/12/2022?
 SELECT
 SUM(DATEDIFF(MINUTE, hr_inicio, hr_fim)) AS tempo
 FROM qualidade.avaliacao
 WHERE cd_matricula = 1 AND dt_avaliacao BETWEEN '2022-12-01' AND '2022-12-22'
---Foram 954 minutos.
+--Foram 974 minutos.
 
---Quais os tipos de defeito mais recorrentes no período de 01/12/2022 à 22/12/2022?
+--Quais os tipos de defeito mais recorrentes no perÃ­odo de 01/12/2022 Ã  22/12/2022?
 SELECT
 COUNT(cd_avaliacao), 
 cd_avaliacao
 FROM qualidade.avaliacao
 WHERE dt_avaliacao BETWEEN '2022-12-01' AND '2022-12-22'
 GROUP BY cd_avaliacao 
---O erro mais recorrente foi pane elétrica (EL).
+--O erro mais recorrente foi pane elÃ©trica (EL).
 
---Quais inspetores atestam mais produtos com avaliação TR, todo rejeitado.
+--Quais inspetores atestam mais produtos com avaliaÃ§Ã£o TR, todo rejeitado.
 SELECT 
 COUNT(cd_avaliacao), 
 nm_funcionario
@@ -110,7 +110,7 @@ WHERE cd_avaliacao = 'TR'
 GROUP BY nm_funcionario
 --Elaine foi quem mais atestou TR: 1 vez.
 
---Quais produtos que só foram liberados depois da detecção de algum problema?
+--Quais produtos que sÃ³ foram liberados depois da detecÃ§Ã£o de algum problema?
 SELECT 
 COUNT(cd_avaliacao) as cod_avaliacao,
 cd_produto
